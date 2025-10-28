@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 words=$( \
   curl -L "https://github.com/monkeytypegame/monkeytype/raw/refs/heads/master/frontend/static/languages/english_1k.json" \
