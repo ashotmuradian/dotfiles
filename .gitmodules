@@ -1,0 +1,4 @@
+[submodule ".local/share/applications/icons"]
+	path = .local/share/applications/icons
+	url = git@github.com:ashotmuradian/dotfiles-icons.git
+	branch = main

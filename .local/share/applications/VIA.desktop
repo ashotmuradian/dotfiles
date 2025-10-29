@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=VIA
+Comment=VIA
+Exec=/home/ashot/src/bin/via-3.0.0-linux.AppImage
+Terminal=false
+Type=Application
+Icon=/home/ashot/.local/share/applications/icons/VIA.png
+StartupNotify=true
