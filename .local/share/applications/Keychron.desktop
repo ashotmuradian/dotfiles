@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Keychron
+Comment=Keychron
+Exec=omarchy-launch-webapp https://www.launcher.keychron.com
+Terminal=false
+Type=Application
+Icon=/home/ashot/.local/share/applications/icons/Keychron.png
+StartupNotify=true
