@@ -14,6 +14,7 @@ git clone "https://github.com/dotnet/command-line-api.git" command-line-api &
 git clone "https://github.com/dotnet/docfx.git" docfx &
 git clone "https://github.com/dotnet/docs.git" docs &
 git clone "https://github.com/dotnet/samples.git" samples &
+git clone "https://github.com/microsoft/MIEngine" miengine &
 
 wait
 
