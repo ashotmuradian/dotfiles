@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Alacritty
+Comment=Alacritty
+Exec=omarchy-launch-webapp https://alacritty.org/config-alacritty-bindings.html
+Terminal=false
+Type=Application
+Icon=/home/ashot/.local/share/applications/icons/Alacritty.png
+StartupNotify=true
