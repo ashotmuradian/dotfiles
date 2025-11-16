@@ -21,6 +21,7 @@
 
 local uv = vim.uv
 local fs = vim.fs
+local locator = require("util.locator")
 
 local group = vim.api.nvim_create_augroup("lspconfig.roslyn_ls_vscode_based", { clear = true })
 
@@ -97,29 +98,12 @@ local function roslyn_handlers()
   }
 end
 
-local vscode_csharp_ext_root =
-  vim.fn.system("find ~/.vscode/extensions/ -name 'ms-dotnettools.csharp-[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -1")
-if vscode_csharp_ext_root and vscode_csharp_ext_root ~= "" then
-  vim.notify(
-    "Initializing: found VSCode CSharp extension at " .. vscode_csharp_ext_root,
-    vim.log.levels.TRACE,
-    { title = "roslyn_ls_vscode_based" }
-  )
-else
-  vim.notify(
-    "Initializing: could not find VSCode CSharp extension",
-    vim.log.levels.ERROR,
-    { title = "roslyn_ls_vscode_based" }
-  )
-  return vim.NIL
-end
-
 ---@type vim.lsp.Config
 return {
   name = "roslyn_ls_vscode_based",
   offset_encoding = "utf-8",
   cmd = {
-    fs.joinpath(vscode_csharp_ext_root, ".roslyn/Microsoft.CodeAnalysis.LanguageServer"),
+    fs.joinpath(locator.vscode_csharp_ext_root, ".roslyn/Microsoft.CodeAnalysis.LanguageServer"),
     "--logLevel",
     "Debug",
     "--telemetryLevel",
@@ -128,19 +112,25 @@ return {
     "--extensionLogDirectory",
     fs.joinpath(uv.os_tmpdir(), "roslyn_ls_vscode_based/logs"),
     "--razorSourceGenerator",
-    fs.joinpath(vscode_csharp_ext_root, ".razorExtension/Microsoft.CodeAnalysis.Razor.Compiler.dll"),
+    fs.joinpath(locator.vscode_csharp_ext_root, ".razorExtension/Microsoft.CodeAnalysis.Razor.Compiler.dll"),
     "--razorDesignTimePath",
-    fs.joinpath(vscode_csharp_ext_root, ".razorExtension/Targets/Microsoft.NET.Sdk.Razor.DesignTime.targets"),
+    fs.joinpath(locator.vscode_csharp_ext_root, ".razorExtension/Targets/Microsoft.NET.Sdk.Razor.DesignTime.targets"),
     "--devKitDependencyPath",
-    fs.joinpath(vscode_csharp_ext_root, ".roslynDevKit/Microsoft.VisualStudio.LanguageServices.DevKit.dll"),
+    fs.joinpath(locator.vscode_csharp_ext_root, ".roslynDevKit/Microsoft.VisualStudio.LanguageServices.DevKit.dll"),
     "--extension",
-    fs.joinpath(vscode_csharp_ext_root, ".razorExtension/Microsoft.VisualStudioCode.RazorExtension.dll"),
+    fs.joinpath(locator.vscode_csharp_ext_root, ".razorExtension/Microsoft.VisualStudioCode.RazorExtension.dll"),
     "--extension",
-    fs.joinpath(vscode_csharp_ext_root, ".xamlTools/Microsoft.VisualStudio.DesignTools.CodeAnalysis.dll"),
+    fs.joinpath(locator.vscode_csharp_ext_root, ".xamlTools/Microsoft.VisualStudio.DesignTools.CodeAnalysis.dll"),
     "--extension",
-    fs.joinpath(vscode_csharp_ext_root, ".xamlTools/Microsoft.VisualStudio.DesignTools.CodeAnalysis.Diagnostics.dll"),
+    fs.joinpath(
+      locator.vscode_csharp_ext_root,
+      ".xamlTools/Microsoft.VisualStudio.DesignTools.CodeAnalysis.Diagnostics.dll"
+    ),
     "--extension",
-    fs.joinpath(vscode_csharp_ext_root, ".roslynCopilot/Microsoft.VisualStudio.Copilot.Roslyn.LanguageServer.dll"),
+    fs.joinpath(
+      locator.vscode_csharp_ext_root,
+      ".roslynCopilot/Microsoft.VisualStudio.Copilot.Roslyn.LanguageServer.dll"
+    ),
     -- "--sessionId",
     -- "cf013746-9dcf-41f1-ae86-b8baa68e3ed81762894845020",
   },

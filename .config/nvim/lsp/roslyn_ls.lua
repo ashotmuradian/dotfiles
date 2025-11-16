@@ -21,6 +21,7 @@
 
 local uv = vim.uv
 local fs = vim.fs
+local locator = require("util.locator")
 
 local group = vim.api.nvim_create_augroup("lspconfig.roslyn_ls", { clear = true })
 
@@ -97,29 +98,12 @@ local function roslyn_handlers()
   }
 end
 
-local vscode_csharp_ext_root =
-  vim.fn.system("find ~/.vscode/extensions/ -name 'ms-dotnettools.csharp-[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -1")
-if vscode_csharp_ext_root and vscode_csharp_ext_root ~= "" then
-  vim.notify(
-    "Initializing: found VSCode CSharp extension at " .. vscode_csharp_ext_root,
-    vim.log.levels.TRACE,
-    { title = "roslyn_ls_vscode_based" }
-  )
-else
-  vim.notify(
-    "Initializing: could not find VSCode CSharp extension",
-    vim.log.levels.ERROR,
-    { title = "roslyn_ls_vscode_based" }
-  )
-  return vim.NIL
-end
-
 ---@type vim.lsp.Config
 return {
   name = "roslyn_ls",
   offset_encoding = "utf-8",
   cmd = {
-    fs.joinpath(vscode_csharp_ext_root, ".roslyn/Microsoft.CodeAnalysis.LanguageServer"),
+    fs.joinpath(locator.vscode_csharp_ext_root, ".roslyn/Microsoft.CodeAnalysis.LanguageServer"),
     "--logLevel",
     "Information",
     "--telemetryLevel",
