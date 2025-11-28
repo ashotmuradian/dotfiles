@@ -4,8 +4,16 @@ require("config.lazy")
 vim.diagnostic.enable(false)
 vim.lsp.enable("roslyn_ls_lspconfig_based")
 
-vim.o.splitright = true
 vim.o.relativenumber = true
+
+vim.opt.listchars = {
+  tab = ">-",
+  trail = "·",
+  space = "·",
+  nbsp = "%",
+  extends = ">",
+  precedes = "<",
+}
 
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
@@ -18,4 +26,9 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.indentexpr = ""
   end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "help",
+  command = "wincmd L",
 })

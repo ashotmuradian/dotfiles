@@ -14,10 +14,12 @@ return {
       },
     },
     terminal = {
-      win = {
+      interactive = false,
+    },
+    styles = {
+      terminal = {
         position = "right",
       },
-      interactive = false,
     },
   },
 }
