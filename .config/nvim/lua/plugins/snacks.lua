@@ -13,5 +13,11 @@ return {
         statusline = true,
       },
     },
+    terminal = {
+      win = {
+        position = "right",
+      },
+      interactive = false,
+    },
   },
 }

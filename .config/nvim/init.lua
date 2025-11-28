@@ -4,7 +4,8 @@ require("config.lazy")
 vim.diagnostic.enable(false)
 vim.lsp.enable("roslyn_ls_lspconfig_based")
 
-vim.opt.relativenumber = true
+vim.o.splitright = true
+vim.o.relativenumber = true
 
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
