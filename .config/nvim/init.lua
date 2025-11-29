@@ -6,6 +6,7 @@ vim.lsp.enable("roslyn_ls_lspconfig_based")
 
 vim.o.relativenumber = true
 
+vim.o.list = false
 vim.opt.listchars = {
   tab = ">-",
   trail = "·",
