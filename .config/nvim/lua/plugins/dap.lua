@@ -34,7 +34,7 @@ return {
       command = vim.fs.joinpath(locator.vscode_csharp_ext_root, ".debugger/vsdbg"),
       args = {
         "--interpreter=vscode",
-        "--engineLogging=" .. vim.fs.joinpath(vim.fn.getcwd(), "vsdbg.log"),
+        -- "--engineLogging=" .. vim.fs.joinpath(vim.fn.getcwd(), "vsdbg.log"),
       },
       reverse_request_handlers = {
         handshake = handshake,

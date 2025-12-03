@@ -13,12 +13,16 @@ return {
         statusline = true,
       },
     },
-    terminal = {
-      interactive = false,
-    },
     styles = {
       terminal = {
         position = "right",
+      },
+      zen = {
+        width = 160,
+        backdrop = {
+          transparent = false,
+          blend = 99,
+        },
       },
     },
   },
