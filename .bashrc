@@ -2,7 +2,7 @@
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
 
-set -o vi
+# set -o vi
 
 . "$HOME/.cargo/env"
 
