@@ -14,6 +14,11 @@ export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
 alias dotnet-install='~/dotnet-install.sh'
 alias vsdbg-install='~/vsdbg-install.sh'
 
+unset INPUT_METHOD
+unset XMODIFIERS
+unset SDL_IM_MODULE
+unset QT_IM_MODULE
+
 n() {
   if [ "$#" -eq 0 ]; then
     nvim .
