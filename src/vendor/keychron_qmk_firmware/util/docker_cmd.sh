@@ -69,8 +69,8 @@ fi
 "$RUNTIME" run --rm -it \
 	$usb_args \
 	$uid_arg \
-	-v "$HOME/src/dotfiles":/src/dotfiles \ # add files to which symlinks, after stow, point to
-	-w /src/vendor/keychron_qmk_firmware \ # prefixed, due to files replaced with relative symlinks after stow
+	-v "$HOME/src/dotfiles":/src/dotfiles \
+	-w /src/vendor/keychron_qmk_firmware \
 	-v "$qmk_firmware_dir":/src/vendor/keychron_qmk_firmware:z \
 	$userspace_docker_args \
 	-e SKIP_GIT="$SKIP_GIT" \
