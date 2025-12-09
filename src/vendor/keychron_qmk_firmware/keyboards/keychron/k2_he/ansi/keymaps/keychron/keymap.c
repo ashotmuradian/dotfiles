@@ -137,3 +137,48 @@ void oneshot_locked_mods_changed_user(uint8_t mods) {
         del_mods(MOD_BIT_LSHIFT);
     }
 }
+
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    if (is_flow_tap_key(keycode) && is_flow_tap_key(prev_keycode)) {
+        switch (prev_keycode) {
+            case KC_SPC:
+                return FLOW_TAP_TERM >> 2;
+            default:
+                return FLOW_TAP_TERM;
+        }
+    }
+    return 0;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!record->event.pressed) {
+        return true;
+    }
+    uint16_t tapcode = get_tap_keycode(keycode);
+    uint8_t mods;
+    switch (tapcode) {
+        case KC_A:
+        case KC_S:
+        case KC_D:
+        case KC_F:
+            mods = get_mods();
+            if (mods & (MOD_BIT_RGUI | MOD_BIT_RALT | MOD_BIT_RSHIFT | MOD_BIT_RCTRL)) {
+                tap_code(tapcode);
+                return false;
+            }
+            break;
+        case KC_J:
+        case KC_K:
+        case KC_L:
+        case KC_SCLN:
+            mods = get_mods();
+            if (mods & (MOD_BIT_LGUI | MOD_BIT_LALT | MOD_BIT_LSHIFT | MOD_BIT_LCTRL)) {
+                tap_code(tapcode);
+                return false;
+            }
+            break;
+        default:
+            break;
+    }
+    return true;
+}

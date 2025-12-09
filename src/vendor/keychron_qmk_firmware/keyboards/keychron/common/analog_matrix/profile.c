@@ -335,7 +335,7 @@ bool profile_reset(uint8_t prof_index) {
             }
         }
 
-    // KC_SPC
+    // KC_SPC, My Personal
     prof->key_config[5][6].act_pt = SHORT_ACTUATION_POINT;
 
     profile_save(prof_index);
