@@ -4,7 +4,7 @@ require("config.lazy")
 vim.diagnostic.enable(false)
 vim.lsp.enable("roslyn_ls_lspconfig_based")
 
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 
 vim.o.backup = false
 vim.o.swapfile = false
