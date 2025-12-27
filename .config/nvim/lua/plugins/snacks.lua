@@ -1,6 +1,10 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    -- snack's explorer, neo-tree explorer is in the neo-tree.lua file
+    -- explorer = {
+    --   replace_netrw = true,
+    -- },
     zen = {
       toggles = {
         dim = false,
