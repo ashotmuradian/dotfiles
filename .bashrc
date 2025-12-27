@@ -13,6 +13,7 @@ export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
 
 alias dotnet-install='~/dotnet-install.sh'
 alias vsdbg-install='~/vsdbg-install.sh'
+alias nvimraw='NVIM_APPNAME=nvimraw nvim'
 
 unset INPUT_METHOD
 unset XMODIFIERS
