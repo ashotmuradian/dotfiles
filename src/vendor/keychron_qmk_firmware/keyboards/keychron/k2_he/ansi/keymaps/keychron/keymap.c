@@ -34,7 +34,7 @@ enum layers {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_84(
-        _______,  KC_F1,               KC_F2,               KC_F3,               KC_F4,               KC_F5,        KC_F6,        KC_F7,               KC_F8,               KC_F9,               KC_F10,              KC_F11,   KC_F12,   KC_PSCR,  KC_DEL,  UG_TOGG,
+        KC_ESC,   KC_F1,               KC_F2,               KC_F3,               KC_F4,               KC_F5,        KC_F6,        KC_F7,               KC_F8,               KC_F9,               KC_F10,              KC_F11,   KC_F12,   KC_PSCR,  KC_DEL,  UG_TOGG,
         KC_GRV,   MT(MOD_LCTL, KC_1),  MT(MOD_LSFT, KC_2),  MT(MOD_LALT, KC_3),  MT(MOD_LGUI, KC_4),  LT(1, KC_5),  LT(4, KC_6),  MT(MOD_RGUI, KC_7),  MT(MOD_RALT, KC_8),  MT(MOD_RSFT, KC_9),  MT(MOD_RCTL, KC_0),  KC_MINS,  KC_EQL,   KC_BSPC,           KC_PGUP,
         KC_TAB,   KC_Q,                KC_W,                KC_E,                KC_R,                KC_T,         KC_Y,         KC_U,                KC_I,                KC_O,                KC_P,                KC_LBRC,  KC_RBRC,  KC_BSLS,           KC_PGDN,
         KC_ESC,   KC_A,                KC_S,                KC_D,                KC_F,                KC_G,         KC_H,         KC_J,                KC_K,                KC_L,                KC_SCLN,             KC_QUOT,            KC_ENT,            KC_HOME,
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  BAT_LVL),
 
     [WIN_BASE] = LAYOUT_ansi_84(
-        _______,        KC_F1,               KC_F2,               KC_F3,               KC_F4,               KC_F5,        KC_F6,        KC_F7,               KC_F8,               KC_F9,               KC_F10,                 KC_F11,   KC_F12,   KC_PSCR,        KC_DEL,   UG_TOGG,
+        KC_ESC,         KC_F1,               KC_F2,               KC_F3,               KC_F4,               KC_F5,        KC_F6,        KC_F7,               KC_F8,               KC_F9,               KC_F10,                 KC_F11,   KC_F12,   KC_PSCR,        KC_DEL,   UG_TOGG,
         KC_GRV,         KC_1,                KC_2,                KC_3,                KC_4,                KC_5,         KC_6,         KC_7,                KC_8,                KC_9,                KC_0,                   KC_MINS,  KC_EQL,   KC_BSPC,                  KC_PGUP,
         KC_TAB,         KC_Q,                KC_W,                KC_E,                KC_R,                KC_T,         KC_Y,         KC_U,                KC_I,                KC_O,                KC_P,                   KC_LBRC,  KC_RBRC,  KC_BSLS,                  KC_PGDN,
         KC_ESC,         MT(MOD_LCTL, KC_A),  MT(MOD_LSFT, KC_S),  MT(MOD_LALT, KC_D),  MT(MOD_LGUI, KC_F),  LT(3, KC_G),  LT(4, KC_H),  MT(MOD_RGUI, KC_J),  MT(MOD_RALT, KC_K),  MT(MOD_RSFT, KC_L),  MT(MOD_RCTL, KC_SCLN),  KC_QUOT,            KC_ENT,                   KC_HOME,
@@ -151,34 +151,100 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!record->event.pressed) {
-        return true;
-    }
-    uint16_t tapcode = get_tap_keycode(keycode);
-    uint8_t mods;
-    switch (tapcode) {
-        case KC_A:
-        case KC_S:
-        case KC_D:
-        case KC_F:
-            mods = get_mods();
-            if (mods & (MOD_BIT_RGUI | MOD_BIT_RALT | MOD_BIT_RSHIFT | MOD_BIT_RCTRL)) {
-                tap_code(tapcode);
-                return false;
-            }
-            break;
-        case KC_J:
-        case KC_K:
-        case KC_L:
-        case KC_SCLN:
-            mods = get_mods();
-            if (mods & (MOD_BIT_LGUI | MOD_BIT_LALT | MOD_BIT_LSHIFT | MOD_BIT_LCTRL)) {
-                tap_code(tapcode);
-                return false;
-            }
-            break;
-        default:
-            break;
+    if (record->tap.count == 0) {
+        switch (keycode) {
+            case LT(5, KC_A):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_LCTRL);
+                } else {
+                    unregister_mods(MOD_BIT_LCTRL);
+                }
+                break;
+            case LT(5, KC_S):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_LSHIFT);
+                } else {
+                    unregister_mods(MOD_BIT_LSHIFT);
+                }
+                break;
+            case LT(5, KC_D):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_LALT);
+                } else {
+                    unregister_mods(MOD_BIT_LALT);
+                }
+                break;
+            case LT(5, KC_F):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_LGUI);
+                } else {
+                    unregister_mods(MOD_BIT_LGUI);
+                }
+                break;
+            case LT(6, KC_SCLN):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_RCTRL);
+                } else {
+                    unregister_mods(MOD_BIT_RCTRL);
+                }
+                break;
+            case LT(6, KC_L):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_RSHIFT);
+                } else {
+                    unregister_mods(MOD_BIT_RSHIFT);
+                }
+                break;
+            case LT(6, KC_K):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_RALT);
+                } else {
+                    unregister_mods(MOD_BIT_RALT);
+                }
+                break;
+            case LT(6, KC_J):
+                if (record->event.pressed) {
+                    register_mods(MOD_BIT_RGUI);
+                } else {
+                    unregister_mods(MOD_BIT_RGUI);
+                }
+                break;
+            default:
+                break;
+        }
     }
     return true;
 }
+
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     if (!record->event.pressed) {
+//         return true;
+//     }
+//     uint16_t tapcode = get_tap_keycode(keycode);
+//     uint8_t mods;
+//     switch (tapcode) {
+//         case KC_A:
+//         case KC_S:
+//         case KC_D:
+//         case KC_F:
+//             mods = get_mods();
+//             if (mods & (MOD_BIT_RGUI | MOD_BIT_RALT | MOD_BIT_RSHIFT | MOD_BIT_RCTRL)) {
+//                 tap_code(tapcode);
+//                 return false;
+//             }
+//             break;
+//         case KC_J:
+//         case KC_K:
+//         case KC_L:
+//         case KC_SCLN:
+//             mods = get_mods();
+//             if (mods & (MOD_BIT_LGUI | MOD_BIT_LALT | MOD_BIT_LSHIFT | MOD_BIT_LCTRL)) {
+//                 tap_code(tapcode);
+//                 return false;
+//             }
+//             break;
+//         default:
+//             break;
+//     }
+//     return true;
+// }
