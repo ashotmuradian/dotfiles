@@ -69,7 +69,6 @@ fi
 "$RUNTIME" run --rm -it \
 	$usb_args \
 	$uid_arg \
-	-v "$HOME/src/dotfiles":/src/dotfiles \
 	-w /src/vendor/keychron_qmk_firmware \
 	-v "$qmk_firmware_dir":/src/vendor/keychron_qmk_firmware:z \
 	$userspace_docker_args \
