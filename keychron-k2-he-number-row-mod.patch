@@ -1,5 +1,5 @@
 diff --git a/keyboards/keychron/k2_he/ansi/keymaps/keychron/keymap.c b/keyboards/keychron/k2_he/ansi/keymaps/keychron/keymap.c
-index 82656aa1aa..07c180484e 100644
+index 82656aa1aa..a92f06f841 100644
 --- a/keyboards/keychron/k2_he/ansi/keymaps/keychron/keymap.c
 +++ b/keyboards/keychron/k2_he/ansi/keymaps/keychron/keymap.c
 @@ -18,46 +18,137 @@
@@ -90,12 +90,12 @@ index 82656aa1aa..07c180484e 100644
 +        _______,  _______,  _______,                                _______,                                                        _______,          _______,  _______,  _______,  _______,  _______),
 +
 +    [FN6] = LAYOUT_ansi_84(
-+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-+        _______,  _______,  _______,  _______,  _______,  _______,  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   _______,  _______,  _______,  _______,            _______,
-+        _______,  _______,  _______,  _______,  _______,  _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  _______,  _______,            _______,            _______,
-+        _______,  _______,  _______,  _______,  _______,  _______,  KC_BSPC,  _______,  _______,  KC_DEL,   _______,                      _______,  _______,  _______,
-+        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
++        KC_CAPS,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_PAUS,  QK_MAGIC_TOGGLE_NKRO,  UG_NEXT,
++        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                         BT_HST1,
++        _______,  _______,  _______,  _______,  _______,  _______,  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   _______,  _______,  _______,  _______,                         BT_HST2,
++        _______,  _______,  _______,  _______,  _______,  _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_ENT,   _______,            _______,                         BT_HST3,
++        _______,  _______,  _______,  _______,  _______,  _______,  KC_BSPC,  _______,  _______,  KC_DEL,   _______,                      _______,  _______,               P2P4G,
++        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,               BAT_LVL),
 +
 +    [FN7] = LAYOUT_ansi_84(
 +        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
@@ -176,17 +176,16 @@ index 82656aa1aa..07c180484e 100644
 +}
 +
 diff --git a/keyboards/keychron/k2_he/config.h b/keyboards/keychron/k2_he/config.h
-index 6ba40e383d..0b22cb72d3 100644
+index 6ba40e383d..d22b66e9d7 100644
 --- a/keyboards/keychron/k2_he/config.h
 +++ b/keyboards/keychron/k2_he/config.h
-@@ -95,3 +95,14 @@
+@@ -95,3 +95,23 @@
  #define FN_KEY_1 MO(1)
  #define FN_KEY_2 MO(3)
  #define FN_BL_TRIG_KEY KC_END
 +
 +
 +/* My Personal */
-+#define MK_COMBINED
 +#define DYNAMIC_KEYMAP_LAYER_COUNT 10
 +
 +#define ONESHOT_TAP_TOGGLE 2
@@ -194,6 +193,16 @@ index 6ba40e383d..0b22cb72d3 100644
 +
 +#define DEFAULT_ACTUATION_POINT 10
 +
++#define MK_3_SPEED
++#define MK_MOMENTARY_ACCEL
++#define MK_C_OFFSET_UNMOD 4
++#define MK_C_INTERVAL_UNMOD 16
++#define MK_C_OFFSET_1 8
++#define MK_C_INTERVAL_1 16
++#define MK_W_OFFSET_UNMOD 1
++#define MK_W_INTERVAL_UNMOD 120
++#define MK_W_OFFSET_1 1
++#define MK_W_INTERVAL_1 60
 diff --git a/util/docker_cmd.sh b/util/docker_cmd.sh
 index cb0c4f3281..706b034ddf 100755
 --- a/util/docker_cmd.sh
