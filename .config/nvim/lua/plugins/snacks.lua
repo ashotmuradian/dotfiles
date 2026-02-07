@@ -22,7 +22,7 @@ return {
         position = "right",
       },
       zen = {
-        width = 160,
+        width = 120,
         backdrop = {
           transparent = false,
           blend = 99,
