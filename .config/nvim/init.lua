@@ -36,10 +36,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "help",
-  command = "wincmd L",
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "help",
+--   command = "wincmd L",
+-- })
 
 -- -- Disable netrw
 -- pcall(vim.api.nvim_del_augroup_by_name, "FileExplorer")
