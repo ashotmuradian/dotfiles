@@ -105,7 +105,7 @@ return {
   cmd = {
     fs.joinpath(locator.vscode_csharp_ext_root, ".roslyn/Microsoft.CodeAnalysis.LanguageServer"),
     "--logLevel",
-    "Information",
+    "Error",
     "--telemetryLevel",
     "off",
     "--extensionLogDirectory",
