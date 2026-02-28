@@ -111,6 +111,7 @@ return {
     "--extensionLogDirectory",
     fs.joinpath(uv.os_tmpdir(), "roslyn_ls_lspconfig_based/logs"),
     "--stdio",
+    "--autoLoadProjects",
   },
   filetypes = { "cs" },
   handlers = roslyn_handlers(),
