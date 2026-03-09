@@ -81,11 +81,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,                                _______,                                                        _______,          _______,  _______,  _______,  _______,  _______),
 
     [FN6] = LAYOUT_ansi_84(
-        KC_CAPS,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_PAUS,  QK_MAGIC_TOGGLE_NKRO,  UG_NEXT,
+        KC_CAPS,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_PAUS,  QK_MAGIC_TOGGLE_NKRO,  UG_NEXT,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,                         BT_HST1,
         _______,  _______,  _______,  _______,  _______,  _______,  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   _______,  _______,  _______,  _______,                         BT_HST2,
         _______,  _______,  _______,  _______,  _______,  _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_ENT,   _______,            _______,                         BT_HST3,
-        _______,  _______,  _______,  _______,  _______,  _______,  KC_BSPC,  _______,  _______,  KC_DEL,   _______,                      _______,  _______,               P2P4G,
+        _______,  _______,  _______,  _______,  _______,  _______,  KC_BSPC,  KC_APP,   _______,  KC_DEL,   _______,                      _______,  _______,               P2P4G,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,               BAT_LVL),
 
     [FN7] = LAYOUT_ansi_84(
@@ -126,6 +126,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return true;
     }
 
+    uint8_t m = QK_LAYER_MOD_GET_MODS(keycode);
+    bool lmod = m == MOD_LGUI || m == MOD_LALT || m == MOD_LSFT || m == MOD_LCTL;
+    bool rmod = m == MOD_RGUI || m == MOD_RALT || m == MOD_RSFT || m == MOD_RCTL;
+    if (!lmod && !rmod) {
+        return true;
+    }
+
     if (record->event.pressed) {
         if (lm[l]++ == 0) {
             layer_on(l);
@@ -136,19 +143,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
 
-    uint8_t m = QK_LAYER_MOD_GET_MODS(keycode);
-    if (m != 0) {
-        if (m & 0x10) {
-            // because m is actually mods_5bit and not mods_8bit
-            m = (m & 0x0F) << 4;
-        }
-        if (record->event.pressed) {
-            register_mods(m);
-        } else {
-            unregister_mods(m);
-        }
+    // convert right modifiers to left ones
+    if (rmod) {
+        // because m is actually mods_5bit and not mods_8bit
+        m = (m & 0x0F) << 4;
+    }
+    if (record->event.pressed) {
+        register_mods(m);
+    } else {
+        unregister_mods(m);
     }
 
     return false;
 }
+
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//     uint8_t base = get_highest_layer(default_layer_state);
+//     if (base != FN2) {
+//         return true;
+//     }
+//
+//     static uint8_t lm[DYNAMIC_KEYMAP_LAYER_COUNT];
+//
+//     uint8_t l = QK_LAYER_MOD_GET_LAYER(keycode);
+//     if (l != FN4 && l != FN5) {
+//         return true;
+//     }
+//
+//     if (record->event.pressed) {
+//         if (lm[l]++ == 0) {
+//             layer_on(l);
+//         }
+//     } else {
+//         if (--lm[l] == 0) {
+//             layer_off(l);
+//         }
+//     }
+//
+//     uint8_t m = QK_LAYER_MOD_GET_MODS(keycode);
+//     if (m != 0) {
+//         if (m & 0x10) {
+//             // because m is actually mods_5bit and not mods_8bit
+//             m = (m & 0x0F) << 4;
+//         }
+//         if (record->event.pressed) {
+//             register_mods(m);
+//         } else {
+//             unregister_mods(m);
+//         }
+//     }
+//
+//     return false;
+// }
 
