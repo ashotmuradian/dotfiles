@@ -10,6 +10,7 @@ export DOTNET_ROOT="$HOME/.dotnet"
 export DOTNET_NOLOGO=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=0
 export PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
+export SSL_CERT_DIR="$SSL_CERT_DIR:$HOME/.aspnet/dev-certs/trust"
 
 alias dotnet-install='~/dotnet-install.sh'
 alias vsdbg-install='~/vsdbg-install.sh'
