@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "cs" },
+  pattern = { "cs", "ts", "js", "css", "html", "cshtml" },
   callback = function()
     vim.opt_local.indentexpr = ""
   end,
