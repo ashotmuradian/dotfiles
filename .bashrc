@@ -6,6 +6,8 @@ source ~/.local/share/omarchy/default/bash/rc
 
 . "$HOME/.cargo/env"
 
+export PATH="$PATH:$HOME/.local/bin"
+
 export DOTNET_ROOT="$HOME/.dotnet"
 export DOTNET_NOLOGO=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=0

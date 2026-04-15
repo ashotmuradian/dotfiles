@@ -2,7 +2,7 @@
 Version=1.0
 Name=Keychron
 Comment=Keychron
-Exec=omarchy-launch-webapp https://www.launcher.keychron.com
+Exec=omarchy-launch-webapp https://launcher.keychron.com --profile-directory="Default"
 Terminal=false
 Type=Application
 Icon=/home/ashot/.local/share/applications/icons/Keychron.png

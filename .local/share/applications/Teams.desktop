@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Teams
+Comment=Teams
+Exec=omarchy-launch-webapp https://teams.live.com --profile-directory="Default"
+Terminal=false
+Type=Application
+Icon=/home/ashot/.local/share/applications/icons/Teams.png
+StartupNotify=true

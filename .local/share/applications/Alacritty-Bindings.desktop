@@ -2,7 +2,7 @@
 Version=1.0
 Name=Alacritty Bindings
 Comment=Alacritty Bindings
-Exec=omarchy-launch-webapp https://alacritty.org/config-alacritty-bindings.html
+Exec=omarchy-launch-webapp https://alacritty.org/config-alacritty-bindings.html --profile-directory="Default"
 Terminal=false
 Type=Application
 Icon=/home/ashot/.local/share/applications/icons/Alacritty-Bindings.png

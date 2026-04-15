@@ -2,7 +2,7 @@
 Version=1.0
 Name=Monkeytype
 Comment=Monkeytype
-Exec=omarchy-launch-webapp https://monkeytype.com
+Exec=omarchy-launch-webapp https://monkeytype.com --profile-directory="Default"
 Terminal=false
 Type=Application
 Icon=/home/ashot/.local/share/applications/icons/Monkeytype.png

@@ -2,7 +2,7 @@
 Version=1.0
 Name=TypeRacer
 Comment=TypeRacer
-Exec=omarchy-launch-webapp https://play.typeracer.com
+Exec=omarchy-launch-webapp https://play.typeracer.com --profile-directory="Default"
 Terminal=false
 Type=Application
 Icon=/home/ashot/.local/share/applications/icons/TypeRacer.png
