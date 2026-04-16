@@ -35,3 +35,5 @@ n() {
   fi
 }
 
+# opencode
+export PATH=/home/ashot/.opencode/bin:$PATH
